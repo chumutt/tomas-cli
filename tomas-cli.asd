@@ -16,7 +16,7 @@
   :source-control (:git "")
 
   ;; Dependencies.
-  :depends-on ()
+  :depends-on (:local-time)
 
   ;; Project stucture.
   :serial T
