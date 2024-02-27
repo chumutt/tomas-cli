@@ -30,6 +30,7 @@ Another solution to run the app is to build and run a binary (see README).
 (in-package #:tomas-cli)
 
 (handler-case
+    (launch)
   (error (c)
     (format *error-output* "~&An error occured: ~a~&" c)
     (uiop:quit 1)))
