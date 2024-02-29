@@ -10,6 +10,9 @@
 
   tomas-cli~&"))
 
+(defun launch ()
+  (%main 'nil))
+
 (defun %main (argv)
   "Parse CLI args."
   (when (member "-h" argv :test #'equal)
