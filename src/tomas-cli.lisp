@@ -20,6 +20,7 @@
   (greet))
 
 (defun launch ()
+  "Calls %main with no arguments."
   (%main 'nil))
 
 (defun main ()
