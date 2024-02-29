@@ -1,3 +1,13 @@
+
+
+(defun launch ()
+  (%main nil))
+
+(defparameter *players-list* '())
+
+(defparameter *pets-list* '())
+
+
 (defstruct player
   (id "" :type string)
   (pets nil :type list))

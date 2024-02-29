@@ -2,10 +2,8 @@
 
 ;; Define your project functionality here...
 
-(defparameter *players-list* '())
-
-(defparameter *pets-list* '())
-
+(defun greet ()
+  (format T "hello"))
 
 (defun help ()
   (format T "~&Usage:
@@ -19,9 +17,7 @@
     ;; clingon, unix-opts, defmain, adopt… when needed.
     (help)
     (uiop:quit))
-
-(defun launch ()
-  (%main nil))
+  (greet))
 
 (defun main ()
   "Entry point for the executable.
