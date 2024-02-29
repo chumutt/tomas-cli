@@ -10,9 +10,6 @@
 
   tomas-cli~&"))
 
-(defun launch ()
-  (%main 'nil))
-
 (defun %main (argv)
   "Parse CLI args."
   (when (member "-h" argv :test #'equal)
@@ -21,6 +18,9 @@
     (help)
     (uiop:quit))
   (greet))
+
+(defun launch ()
+  (%main 'nil))
 
 (defun main ()
   "Entry point for the executable.
