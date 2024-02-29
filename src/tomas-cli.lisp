@@ -3,9 +3,11 @@
 ;; Define your project functionality here...
 
 (defun greet ()
+  "Test function, say hello to the user."
   (format T "hello"))
 
 (defun help ()
+  "Display command-line help for this program."
   (format T "~&Usage:
 
   tomas-cli~&"))
