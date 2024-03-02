@@ -2,6 +2,35 @@
 
 ;; Define your project functionality here...
 
+(defclass domain ()
+  (name))
+
+(defclass kingdom (domain)
+  (name))
+
+(defclass phylum (kingdom)
+  (name))
+
+(defclass classs (phylum)
+  (name))
+
+(defclass order (classs)
+  (name))
+
+(defclass family (order)
+  (name))
+
+(defclass genus (family)
+  (name))
+
+(defclass species (genus)
+  (name))
+
+(defclass subspecies (species)
+  (name))
+
+
+
 
 
 (defun greet ()
