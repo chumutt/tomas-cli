@@ -10,7 +10,9 @@
   :source-control (:git "")
 
   ;; Dependencies.
-  :depends-on (:local-time)
+  :depends-on (:trial
+               :trial-glfw
+               :trial-png)
 
   ;; Project stucture.
   :serial T
