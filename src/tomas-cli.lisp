@@ -60,6 +60,9 @@
    (subspecies
     :initarg :subspecies
     :initform (error "Must supply a pet subspecies."))
+   (variety
+    :initarg :variety
+    :initform (error "Must supply a pet variety."))
    (name
     :initarg :name
     :initform (error "Must supply a pet name."))
@@ -74,7 +77,11 @@
     :initform 50)))
 
 (defparameter *test-pet*
-  (make-instance 'pet :name "fluffy"))
+  (make-instance 'pet :species "Homo"
+                      :subspecies "homonculus"
+                      :variety "sapiens"
+                      :name "test tomas"))
+
 
 (defun greet ()
   "Test function, say hello to the user."
