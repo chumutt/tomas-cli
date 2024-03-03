@@ -54,9 +54,15 @@
    :initform (error "Must supply a subspecies name."))))
 
 (defclass pet ()
-  ((name
+  ((species
+    :initarg :species
+    :initform (error "Must supply a pet species."))
+   (subspecies
+    :initarg :subspecies
+    :initform (error "Must supply a pet subspecies."))
+   (name
     :initarg :name
-    :initform (error "Must supply a pet name.")
+    :initform (error "Must supply a pet name."))
    (health
     :initarg :health
     :initform 100)
