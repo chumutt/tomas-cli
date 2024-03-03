@@ -59,7 +59,14 @@
     :initform (error "Must supply an infrasubspecies name."))))
 
 (defclass creature ()
-  ((species
+  ((name
+    :reader creature-name
+    :initarg :name
+    :type string
+    :accessor name
+    :initform "???"
+    :documentation "The creature's name.")
+   (species
     :reader creature-species
     :initarg :species
     :type string
@@ -75,12 +82,6 @@
     :reader creature-infrasubspecies
     :initarg :infrasubspecies
     :documentation "The creature's taxonomic infrasubspecies (sub-subspecies).")
-   (name
-    :reader creature-name
-    :initarg :name
-    :type string
-    :initform "Unnamed creature"
-    :documentation "The creature's name.")
    (health
     :reader creature-health
     :initarg :health
@@ -101,16 +102,18 @@
     :documentation "The creature's level of happiness."))
   (:documentation "A creature."))
 
-(defclass pet (creature))
+(defclass pet (creature)
+  ((name
+    :reader name
+    :initarg :name
+    :accessor name
+    :type string
+    :initform "Unnamed pet"
+    :documentation "The pet's name."))
+  (:documentation "A pet."))
 
 (defgeneric description (thing)
   (:documentation "Return a description of a thing (a life-form, plant-form, or an item."))
-
-(defmethod description ((thing creature))
-  (format nil "Name: ~A." creature-name)
-  (format nil "Health: ~D" creature-health)
-  (format nil "Hunger: ~D" creature-hunger)
-  (format nil "Happiness: ~D" creature-happiness))
 
 (defparameter *test-pet-1*
   (make-instance 'pet :species "Homo"
@@ -122,6 +125,9 @@
   (make-instance 'pet :species "Felinus"
                       :subspecies "domesticus"
                       :name "Test Fluffy"))
+
+(defmethod description ((object pet))
+  (format nil "Name: ~A" (pet-name object)))
 
 (defun greet ()
   "Test function, say hello to the user."
