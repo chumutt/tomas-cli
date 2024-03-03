@@ -174,6 +174,9 @@
 
   tomas-cli~&"))
 
+(defun launch (&rest args)
+  (apply #'trial:launch 'main args))
+
 (defun %main (argv)
   "Parse CLI args."
   (when (member "-h" argv :test #'equal)
@@ -181,10 +184,8 @@
     ;; clingon, unix-opts, defmain, adopt… when needed.
     (help)
     (uiop:quit))
-  (greet))
-
-(defun launch (&rest args)
-  (apply #'trial:launch 'main args))
+  (greet)
+  (launch))
 
 (defun main ()
   "Entry point for the executable.
