@@ -2,9 +2,6 @@
 
 ;; Define your project functionality here...
 
-(defclass main (trial:main)
-  ())
-
 (defvar *player-ids* 0)
 
 (defparameter *players-list* '())
@@ -154,9 +151,13 @@
   (format t "Hunger: ~A~%" (hunger object))
   (format t "Happiness: ~A~%" (happiness object)))
 
-(defmethod setup-scene ((main main) scene)
-  (enter (make-instance '3d-camera :location (vec 0 0 -3)) scene)
-  (enter (make-instance 'render-pass) scene))
+(defgeneric rename (object)
+  (:documentation "Rename a renamable object."))
+
+(defmethod rename ((object pet))
+  (if player-owns-the-pet-in-question
+      ask-player-for-a-new-pet-name-and-rename-pet
+      give-error-regarding-lack-of-ownership-over-this-pet))
 
 (defparameter *test-pet-1*
   (make-instance 'pet :species "Homo"
@@ -178,9 +179,6 @@
 
   tomas-cli~&"))
 
-(defun launch (&rest args)
-  (apply #'trial:launch 'main args))
-
 (defun %main (argv)
   "Parse CLI args."
   (when (member "-h" argv :test #'equal)
@@ -188,8 +186,11 @@
     ;; clingon, unix-opts, defmain, adopt… when needed.
     (help)
     (uiop:quit))
-  (greet)
-  (launch))
+  (greet))
+
+(defun launch ()
+  "Calls %main with no arguments."
+  (%main 'nil))
 
 (defun main ()
   "Entry point for the executable.
