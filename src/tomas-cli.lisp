@@ -58,48 +58,59 @@
     :initarg :infrasubspecies-name
     :initform (error "Must supply an infrasubspecies name."))))
 
-(defclass pet ()
+(defclass creature ()
   ((species
-    :reader pet-species
+    :reader creature-species
     :initarg :species
     :type string
-    :initform (error "Must supply a pet species.")
-    :documentation "The pet's taxonomic species.")
+    :initform (error "Must supply a creature species.")
+    :documentation "The creature's taxonomic species.")
    (subspecies
-    :reader pet-subspecies
+    :reader creature-subspecies
     :initarg :subspecies
     :type string
-    :initform (error "Must supply a pet subspecies.")
-    :documentation "The pet's taxonomic subspecies (infraspecies).")
+    :initform (error "Must supply a creature subspecies.")
+    :documentation "The creature's taxonomic subspecies (infraspecies).")
    (infrasubspecies
-    :reader pet-infrasubspecies
+    :reader creature-infrasubspecies
     :initarg :infrasubspecies
-    :documentation "The pet's taxonomic infrasubspecies (sub-subspecies).")
+    :documentation "The creature's taxonomic infrasubspecies (sub-subspecies).")
    (name
-    :reader pet-name
+    :reader creature-name
     :initarg :name
     :type string
-    :initform "Unnamed pet"
-    :documentation "The pet's name.")
+    :initform "Unnamed creature"
+    :documentation "The creature's name.")
    (health
-    :reader pet-health
+    :reader creature-health
     :initarg :health
     :type integer
     :initform 100
-    :documentation "The pet's health.")
+    :documentation "The creature's health.")
    (hunger
-    :reader pet-hunger
+    :reader creature-hunger
     :initarg :hunger
     :type integer
     :initform 50
-    :documentation "The pet's level of stomach fullness. 100 = full; 0 = empty (starving).")
+    :documentation "The creature's level of stomach fullness. 100 = full; 0 = empty (starving).")
    (happiness
-    :reader pet-happiness
+    :reader creature-happiness
     :initarg :happiness
     :type integer
     :initform 50
-    :documentation "The pet's level of happiness."))
-  (:documentation "A pet."))
+    :documentation "The creature's level of happiness."))
+  (:documentation "A creature."))
+
+(defclass pet (creature))
+
+(defgeneric description (thing)
+  (:documentation "Return a description of a thing (a life-form, plant-form, or an item."))
+
+(defmethod description ((thing creature))
+  (format nil "Name: ~A." creature-name)
+  (format nil "Health: ~D" creature-health)
+  (format nil "Hunger: ~D" creature-hunger)
+  (format nil "Happiness: ~D" creature-happiness))
 
 (defparameter *test-pet-1*
   (make-instance 'pet :species "Homo"
@@ -110,7 +121,7 @@
 (defparameter *test-pet-2*
   (make-instance 'pet :species "Felinus"
                       :subspecies "domesticus"
-                      :name "Fluffy"))
+                      :name "Test Fluffy"))
 
 (defun greet ()
   "Test function, say hello to the user."
