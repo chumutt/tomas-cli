@@ -53,35 +53,64 @@
    :initarg :subspecies-name
    :initform (error "Must supply a subspecies name."))))
 
+(defclass infrasubspecies (subspecies)
+  ((name
+    :initarg :infrasubspecies-name
+    :initform (error "Must supply an infrasubspecies name."))))
+
 (defclass pet ()
   ((species
+    :reader pet-species
     :initarg :species
-    :initform (error "Must supply a pet species."))
+    :type string
+    :initform (error "Must supply a pet species.")
+    :documentation "The pet's taxonomic species.")
    (subspecies
+    :reader pet-subspecies
     :initarg :subspecies
-    :initform (error "Must supply a pet subspecies."))
-   (variety
-    :initarg :variety
-    :initform (error "Must supply a pet variety."))
+    :type string
+    :initform (error "Must supply a pet subspecies.")
+    :documentation "The pet's taxonomic subspecies (infraspecies).")
+   (infrasubspecies
+    :reader pet-infrasubspecies
+    :initarg :infrasubspecies
+    :documentation "The pet's taxonomic infrasubspecies (sub-subspecies).")
    (name
+    :reader pet-name
     :initarg :name
-    :initform (error "Must supply a pet name."))
+    :type string
+    :initform "Unnamed pet"
+    :documentation "The pet's name.")
    (health
+    :reader pet-health
     :initarg :health
-    :initform 100)
+    :type integer
+    :initform 100
+    :documentation "The pet's health.")
    (hunger
+    :reader pet-hunger
     :initarg :hunger
-    :initform 0)
+    :type integer
+    :initform 50
+    :documentation "The pet's level of stomach fullness. 100 = full; 0 = empty (starving).")
    (happiness
+    :reader pet-happiness
     :initarg :happiness
-    :initform 50)))
+    :type integer
+    :initform 50
+    :documentation "The pet's level of happiness."))
+  (:documentation "A pet."))
 
-(defparameter *test-pet*
+(defparameter *test-pet-1*
   (make-instance 'pet :species "Homo"
                       :subspecies "homonculus"
-                      :variety "sapiens"
-                      :name "test tomas"))
+                      :infrasubspecies "sapiens"
+                      :name "Test T. Tomas"))
 
+(defparameter *test-pet-2*
+  (make-instance 'pet :species "Felinus"
+                      :subspecies "domesticus"
+                      :name "Fluffy"))
 
 (defun greet ()
   "Test function, say hello to the user."
