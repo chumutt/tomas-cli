@@ -113,8 +113,21 @@
     :accessor name
     :type string
     :initform "Unnamed pet"
-    :documentation "The pet's name."))
+    :documentation "The pet's name.")
+   (owner
+    :reader owner
+    :initarg :owner
+    :accessor owner
+    :type string
+    :initform ""
+    :documentation "The owner of the pet (if any)."))
   (:documentation "A pet."))
+
+(defgeneric ownedp (object)
+  (:documentation "Return owner if owned, else return NIL."))
+
+(defmethod ownedp ((object pet))
+  (when (not (null (owner object)))))
 
 (defgeneric description (object)
   (:documentation
@@ -128,6 +141,23 @@
   (format t "Health: ~A~%" (health object))
   (format t "Hunger: ~A~%" (hunger object))
   (format t "Happiness: ~A~%" (happiness object)))
+
+(defmethod description ((object pet))
+  (format t "Name: ~A~%" (name object))
+  (format t "Owned?: ~A~%" (ownedp object))
+  (format t "Taxonomy: ~A ~A ~A ~%" (species object) (subspecies object)
+          (infrasubspecies object))
+  (format t "Health: ~A~%" (health object))
+  (format t "Hunger: ~A~%" (hunger object))
+  (format t "Happiness: ~A~%" (happiness object)))
+
+;; (defgeneric rename (object)
+;;   (:documentation "Rename a renamable object."))
+
+;; (defmethod rename ((object pet))
+;;   (if player-owns-the-pet-in-question
+;;       ask-player-for-a-new-pet-name-and-rename-pet
+;;       give-error-regarding-lack-of-ownership-over-this-pet))
 
 (defparameter *test-pet-1*
   (make-instance 'pet :species "Homo"
