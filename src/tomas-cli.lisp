@@ -151,13 +151,13 @@
   (format t "Hunger: ~A~%" (hunger object))
   (format t "Happiness: ~A~%" (happiness object)))
 
-;; (defgeneric rename (object)
-;;   (:documentation "Rename a renamable object."))
+(defgeneric rename (object)
+  (:documentation "Rename a renamable object."))
 
-;; (defmethod rename ((object pet))
-;;   (if player-owns-the-pet-in-question
-;;       ask-player-for-a-new-pet-name-and-rename-pet
-;;       give-error-regarding-lack-of-ownership-over-this-pet))
+(defmethod rename ((object pet))
+  (if player-owns-the-pet-in-question
+      ask-player-for-a-new-pet-name-and-rename-pet
+      give-error-regarding-lack-of-ownership-over-this-pet))
 
 (defparameter *test-pet-1*
   (make-instance 'pet :species "Homo"
