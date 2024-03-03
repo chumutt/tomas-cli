@@ -10,52 +10,52 @@
 
 (defclass domain ()
   ((name
-   :initarg :domain-name
+   :initarg :name
    :initform (error "Must supply a domain name."))))
 
 (defclass kingdom (domain)
   ((name
-   :initarg :kingdom-name
+   :initarg :name
    :initform (error "Must supply a kingdom name."))))
 
 (defclass phylum (kingdom)
   ((name
-   :initarg :phylum-name
+   :initarg :name
    :initform (error "Must supply a phylum name."))))
 
 (defclass tclass (phylum)
   ((name
-   :initarg :tclass-name
+   :initarg :name
    :initform (error "Must supply a taxonomological class name."))))
 
 (defclass order (tclass)
   ((name
-   :initarg :order-name
+   :initarg :name
    :initform (error "Must supply an order name."))))
 
 (defclass family (order)
   ((name
-   :initarg :family-name
+   :initarg :name
    :initform (error "Must supply a family name."))))
 
 (defclass genus (family)
   ((name
-   :initarg :genus-name
+   :initarg :name
    :initform (error "Must supply a genus name."))))
 
 (defclass species (genus)
   ((name
-   :initarg :species-name
+   :initarg :name
    :initform (error "Must supply a species name."))))
 
 (defclass subspecies (species)
   ((name
-   :initarg :subspecies-name
+   :initarg :name
    :initform (error "Must supply a subspecies name."))))
 
 (defclass infrasubspecies (subspecies)
   ((name
-    :initarg :infrasubspecies-name
+    :initarg :name
     :initform (error "Must supply an infrasubspecies name."))))
 
 (defclass creature ()
@@ -116,8 +116,18 @@
     :documentation "The pet's name."))
   (:documentation "A pet."))
 
-(defgeneric description (thing)
-  (:documentation "Return a description of a thing (a life-form, plant-form, or an item."))
+(defgeneric description (object)
+  (:documentation
+   "Return a description of a thing
+(a life-form, plant-form, or an item."))
+
+(defmethod description ((object creature))
+  (format t "Name: ~A~%" (name object))
+  (format t "Taxonomy: ~A ~A ~A ~%" (species object) (subspecies object)
+          (infrasubspecies object))
+  (format t "Health: ~A~%" (health object))
+  (format t "Hunger: ~A~%" (hunger object))
+  (format t "Happiness: ~A~%" (happiness object)))
 
 (defparameter *test-pet-1*
   (make-instance 'pet :species "Homo"
@@ -130,17 +140,8 @@
                       :subspecies "domesticus"
                       :name "Test Fluffy"))
 
-(defmethod description ((object creature))
-  (format t "Name: ~A~%" (name object))
-  (format t "Taxonomy: ~A ~A ~A ~%" (species object) (subspecies object)
-          (infrasubspecies object))
-  (format t "Health: ~A~%" (health object))
-  (format t "Hunger: ~A~%" (hunger object))
-  (format t "Happiness: ~A~%" (happiness object)))
-
 (defun greet ()
-  "Test function, say hello to the user."
-  (format T "hello"))
+  (format T "welcome! to T.O.M.A.S.!~%"))
 
 (defun help ()
   "Display command-line help for this program."
