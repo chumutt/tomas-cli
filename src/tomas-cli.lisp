@@ -2,6 +2,8 @@
 
 ;; Define your project functionality here...
 
+(defvar *player-ids* 0)
+
 (defparameter *players-list* '())
 
 (defparameter *pets-list* '())
