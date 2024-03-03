@@ -154,6 +154,10 @@
   (format t "Hunger: ~A~%" (hunger object))
   (format t "Happiness: ~A~%" (happiness object)))
 
+(defmethod setup-scene ((main main) scene)
+  (enter (make-instance '3d-camera :location (vec 0 0 -3)) scene)
+  (enter (make-instance 'render-pass) scene))
+
 (defparameter *test-pet-1*
   (make-instance 'pet :species "Homo"
                       :subspecies "homonculus"
