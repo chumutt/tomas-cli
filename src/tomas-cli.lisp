@@ -2,6 +2,9 @@
 
 ;; Define your project functionality here...
 
+(defclass main (trial:main)
+  ())
+
 (defvar *player-ids* 0)
 
 (defparameter *players-list* '())
@@ -180,9 +183,8 @@
     (uiop:quit))
   (greet))
 
-(defun launch ()
-  "Calls %main with no arguments."
-  (%main 'nil))
+(defun launch (&rest args)
+  (apply #'trial:launch 'main args))
 
 (defun main ()
   "Entry point for the executable.
