@@ -119,7 +119,7 @@
 (defgeneric description (object)
   (:documentation
    "Return a description of a thing
-(a life-form, plant-form, or an item."))
+(a life-form, plant-form, an item, etc.)."))
 
 (defmethod description ((object creature))
   (format t "Name: ~A~%" (name object))
