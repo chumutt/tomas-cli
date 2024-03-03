@@ -130,9 +130,10 @@
                       :subspecies "domesticus"
                       :name "Test Fluffy"))
 
-(defmethod description ((object pet))
+(defmethod description ((object creature))
   (format t "Name: ~A~%" (name object))
-  (format t "Taxonomy: ~A ~A ~A ~%" (species object) (subspecies object) (infrasubspecies object))
+  (format t "Taxonomy: ~A ~A ~A ~%" (species object) (subspecies object)
+          (infrasubspecies object))
   (format t "Health: ~A~%" (health object))
   (format t "Hunger: ~A~%" (hunger object))
   (format t "Happiness: ~A~%" (happiness object)))
