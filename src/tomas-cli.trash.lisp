@@ -1,4 +1,50 @@
 (defclass domain ()
+  ((name
+   :initarg :domain-name
+   :initform (error "Must supply a domain name."))))
+
+(defclass kingdom (domain)
+  ((name
+   :initarg :kingdom-name
+   :initform (error "Must supply a kingdom name."))))
+
+(defclass phylum (kingdom)
+  ((name
+   :initarg :phylum-name
+   :initform (error "Must supply a phylum name."))))
+
+(defclass classs (phylum)
+  ((name
+   :initarg :classs-name
+   :initform (error "Must supply a class name."))))
+
+(defclass order (classs)
+  ((name
+   :initarg :order-name
+   :initform (error "Must supply an order name."))))
+
+(defclass family (order)
+  ((name
+   :initarg :family-name
+   :initform (error "Must supply a family name."))))
+
+(defclass genus (family)
+  ((name
+   :initarg :genus-name
+   :initform (error "Must supply a genus name."))))
+
+(defclass species (genus)
+  ((name
+   :initarg :species-name
+   :initform (error "Must supply a species name."))))
+
+(defclass subspecies (species)
+  ((name
+   :initarg :subspecies-name
+   :initform (error "Must supply a subspecies name."))))
+
+
+(defclass domain ()
   "Archaea, Bacteria, or Eukarya."
   ((name
    :initarg :name)))
