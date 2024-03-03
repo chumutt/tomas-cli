@@ -55,7 +55,8 @@
 
 (defclass pet ()
   ((name
-    :initarg :name)
+    :initarg :name
+    :initform (error "Must supply a pet name.")
    (health
     :initarg :health
     :initform 100)
