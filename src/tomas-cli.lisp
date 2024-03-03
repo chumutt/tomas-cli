@@ -60,42 +60,46 @@
 
 (defclass creature ()
   ((name
-    :reader creature-name
+    :reader name
     :initarg :name
     :type string
     :accessor name
     :initform "???"
     :documentation "The creature's name.")
    (species
-    :reader creature-species
+    :reader species
     :initarg :species
     :type string
+    :accessor species
     :initform (error "Must supply a creature species.")
     :documentation "The creature's taxonomic species.")
    (subspecies
-    :reader creature-subspecies
+    :reader subspecies
     :initarg :subspecies
     :type string
+    :accessor subspecies
     :initform (error "Must supply a creature subspecies.")
     :documentation "The creature's taxonomic subspecies (infraspecies).")
    (infrasubspecies
-    :reader creature-infrasubspecies
+    :reader infrasubspecies
     :initarg :infrasubspecies
+    :type string
+    :accessor infrasubspecies
     :documentation "The creature's taxonomic infrasubspecies (sub-subspecies).")
    (health
-    :reader creature-health
+    :reader health
     :initarg :health
     :type integer
     :initform 100
     :documentation "The creature's health.")
    (hunger
-    :reader creature-hunger
+    :reader hunger
     :initarg :hunger
     :type integer
     :initform 50
     :documentation "The creature's level of stomach fullness. 100 = full; 0 = empty (starving).")
    (happiness
-    :reader creature-happiness
+    :reader happiness
     :initarg :happiness
     :type integer
     :initform 50
@@ -127,7 +131,11 @@
                       :name "Test Fluffy"))
 
 (defmethod description ((object pet))
-  (format nil "Name: ~A" (pet-name object)))
+  (format t "Name: ~A~%" (name object))
+  (format t "Taxonomy: ~A ~A ~A ~%" (species object) (subspecies object) (infrasubspecies object))
+  (format t "Health: ~A~%" (health object))
+  (format t "Hunger: ~A~%" (hunger object))
+  (format t "Happiness: ~A~%" (happiness object)))
 
 (defun greet ()
   "Test function, say hello to the user."
