@@ -3,35 +3,49 @@
 ;; Define your project functionality here...
 
 (defclass domain ()
-  (name))
+  ((name
+   :initarg :domain-name
+   :initform (error "Must supply a domain name."))))
 
 (defclass kingdom (domain)
-  (name))
+  ((name
+   :initarg :kingdom-name
+   :initform (error "Must supply a kingdom name."))))
 
 (defclass phylum (kingdom)
-  (name))
+  ((name
+   :initarg :phylum-name
+   :initform (error "Must supply a phylum name."))))
 
 (defclass classs (phylum)
-  (name))
+  ((name
+   :initarg :classs-name
+   :initform (error "Must supply a class name."))))
 
 (defclass order (classs)
-  (name))
+  ((name
+   :initarg :order-name
+   :initform (error "Must supply an order name."))))
 
 (defclass family (order)
-  (name))
+  ((name
+   :initarg :family-name
+   :initform (error "Must supply a family name."))))
 
 (defclass genus (family)
-  (name))
+  ((name
+   :initarg :genus-name
+   :initform (error "Must supply a genus name."))))
 
 (defclass species (genus)
-  (name))
+  ((name
+   :initarg :species-name
+   :initform (error "Must supply a species name."))))
 
 (defclass subspecies (species)
-  (name))
-
-
-
-
+  ((name
+   :initarg :subspecies-name
+   :initform (error "Must supply a subspecies name."))))
 
 (defun greet ()
   "Test function, say hello to the user."

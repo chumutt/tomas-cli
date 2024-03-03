@@ -1,3 +1,32 @@
+(defclass domain ()
+  "Archaea, Bacteria, or Eukarya."
+  ((name
+   :initarg :name)))
+
+(defclass kingdom (domain)
+  "Animalia, Plantae, Fungi, Protista, Archaea, or Bacteria."
+  (name))
+
+(defclass phylum (kingdom)
+  "Humans would be of the class 'chordata'."
+  (name))
+
+(defclass classs (phylum)
+  "Humans would be of the class 'mammalia'."
+  (name))
+
+(defclass order (classs)
+  "Humans are of the 'primate' order."
+  (name))
+
+(defclass family (order)
+  "Humans are of the family 'hominidae'."
+  (name))
+
+(defclass genus (family)
+  "The 'Homo' in 'Homo sapiens'."
+  (name))
+
 
 
 (defun launch ()
