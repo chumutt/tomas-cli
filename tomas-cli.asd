@@ -10,7 +10,8 @@
   :source-control (:git "")
 
   ;; Dependencies.
-  :depends-on (:local-time)
+  :depends-on (:alexandria
+               :local-time)
   
   ;; Project stucture.
   :serial T
