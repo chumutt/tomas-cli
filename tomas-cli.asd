@@ -18,7 +18,8 @@
   :components ((:module "src"
                         :serial T
                         :components ((:file "packages")
-                                     (:file "tomas-cli"))))
+                                     (:file "tomas-cli")
+                                     (:file "creature"))))
 
   ;; Build a binary:
   ;; don't change this line.
