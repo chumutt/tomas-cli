@@ -10,6 +10,8 @@ originally called ~tomasgotchi~.
 
 (tomagotchi-esque game meant as a learning project; feel free to disregard).
 
+this is a project for fun, experimentation, and learning purposes.
+
 * Usage
 :PROPERTIES:
 :CUSTOM_ID: usage
