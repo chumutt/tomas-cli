@@ -52,9 +52,8 @@
     ;; clingon, unix-opts, defmain, adopt… when needed.
     (help)
     (uiop:quit))
-  (prog1
-    (greet (or (first argv)
-             "dear lisp user"))))
+  (greet (or (first argv)
+             "dear lisp user")))
 
 (defun main ()
   "Entry point for the executable.
