@@ -4,7 +4,7 @@
   :author "chu the pup <chufilthymutt@gmail.com>"
   :version "0.0.1"
   :license "GNU GPL-3.0"
-  :description "neglectful parent simulator (cli)"
+  :description "neglectful parent (tamagatchi) simulator (cli)"
   :homepage ""
   :bug-tracker ""
   :source-control (:git "")
@@ -18,8 +18,7 @@
   :components ((:module "src"
                         :serial T
                         :components ((:file "packages")
-                                     (:file "tomas-cli")
-                                     (:file "creature"))))
+                                     (:file "tomas-cli"))))
 
   ;; Build a binary:
   ;; don't change this line.
