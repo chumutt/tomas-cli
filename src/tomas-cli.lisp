@@ -2,6 +2,30 @@
 
 ;; Define your project functionality here...
 
+(defparameter *allowed-commands* '(quit))
+
+(defun game-eval (sexp)
+  (if (member (car sexp) *allowed-commands*)
+      (eval sexp)
+      '(i do not know that command.)))
+
+(defun game-read ()
+  (let ((cmd (uiop:safe-read-from-string
+              (str:concat "(" (read-line) ")"))))
+    (flet ((quote-it (x)
+             (list 'quote x)))
+      (cons (car cmd) (mapcar #'quote-it (cdr cmd))))))
+
+(defun game-print (lst)
+  (princ (str:trim (prin1-to-string lst) :char-bag "() "))
+  (fresh-line))
+
+(defun game-repl ()
+  (let ((cmd (game-read)))
+    (unless (eq (car cmd) 'quit)
+      (game-print (game-eval cmd))
+      (game-repl))))
+
 (defvar *playtime-epoch* nil)
 
 (defun get-when-loaded ()
