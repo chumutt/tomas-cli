@@ -16,8 +16,24 @@
              (list 'quote x)))
       (cons (car cmd) (mapcar #'quote-it (cdr cmd))))))
 
+(defun tweak-text (lst caps lit)
+  (when lst
+    (let ((item (car lst))
+          (rest (rest lst)))
+      (cond ((str:blank? item) (cons item (tweak-text rest caps lit)))
+            ((str:s-member '(#\! #\? #\.) item) (cons item (tweak-text rest t lit)))
+            ((str:s-member '(#\") item) (tweak-text rest caps (not lit)))
+            (lit (cons item (tweak-text rest nil lit)))
+            ((or caps lit) (cons (char-upcase item) (tweak-text rest nil lit)))
+            (t (cons (char-downcase item) (tweak-text rest nil nil)))))))
+
 (defun game-print (lst)
-  (princ (str:trim (prin1-to-string lst) :char-bag "() "))
+  (princ
+   (coerce
+    (tweak-text (coerce (str:trim (prin1-to-string lst) :char-bag "() ") 'list)
+                t
+                nil)
+           'string))
   (fresh-line))
 
 (defun game-repl ()
