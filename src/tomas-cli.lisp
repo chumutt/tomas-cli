@@ -2,6 +2,8 @@
 
 ;; Define your project functionality here...
 
+(defparameter *pets* '())
+
 (defparameter *allowed-commands* '(help quit))
 
 (defun help ()
@@ -43,7 +45,8 @@
                 t
                 nil)
     'string))
-  (fresh-line))
+  (fresh-line)
+  nil)
 
 (defun game-repl ()
   (let ((cmd (game-read)))
