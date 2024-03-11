@@ -7,6 +7,9 @@
     (beatrice (a dinosaur))
     (cindy (a hamster))))
 
+(defparameter *pet-properties*
+  '((alex ())))
+
 (defparameter *player-owned-pets* '())
 
 (defparameter *allowed-commands* '(adopt help quit))
