@@ -10,8 +10,7 @@
       '(i do not know that command.)))
 
 (defun game-read ()
-  (let ((cmd (uiop:safe-read-from-string
-              (str:concat "(" (read-line) ")"))))
+  (let ((cmd (uiop:safe-read-from-string (str:concat "(" (read-line) ")"))))
     (flet ((quote-it (x)
              (list 'quote x)))
       (cons (car cmd) (mapcar #'quote-it (cdr cmd))))))
@@ -21,7 +20,8 @@
     (let ((item (car lst))
           (rest (rest lst)))
       (cond ((str:blank? item) (cons item (tweak-text rest caps lit)))
-            ((str:s-member '(#\! #\? #\.) item) (cons item (tweak-text rest t lit)))
+            ((str:s-member '(#\! #\? #\.) item)
+             (cons item (tweak-text rest t lit)))
             ((str:s-member '(#\") item) (tweak-text rest caps (not lit)))
             (lit (cons item (tweak-text rest nil lit)))
             ((or caps lit) (cons (char-upcase item) (tweak-text rest nil lit)))
@@ -70,7 +70,8 @@
 
 (defun startup-setup ()
   (set-when-loaded)
-  (set-pid))
+  (set-pid)
+  (game-repl))
 
 (defun %main (argv)
   "Parse CLI args."

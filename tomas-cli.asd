@@ -11,7 +11,8 @@
 
   ;; Dependencies.
   :depends-on (:alexandria
-               :local-time)
+               :local-time
+               :str)
   
   ;; Project stucture.
   :serial T
