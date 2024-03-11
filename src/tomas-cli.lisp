@@ -45,8 +45,7 @@
                 t
                 nil)
     'string))
-  (fresh-line)
-  nil)
+  (fresh-line))
 
 (defun game-repl ()
   (let ((cmd (game-read)))
@@ -63,8 +62,6 @@
   (setf *playtime-epoch* (get-when-loaded)))
 
 (defvar *pid* nil)
-
-(defvar *pets* nil)
 
 (defun get-pid ()
   (uiop:getenv "USER"))
