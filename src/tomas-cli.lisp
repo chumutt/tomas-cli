@@ -2,9 +2,25 @@
 
 ;; Define your project functionality here...
 
-(defparameter *pets* '())
+(defparameter *adoptable-pets*
+  '((alex (a husky))
+    (beatrice (a dinosaur))
+    (cindy (a hamster))))
 
-(defparameter *allowed-commands* '(help quit))
+(defparameter *player-owned-pets* '((test pet (a testing pet for testing))))
+
+(defparameter *allowed-commands* '(adopt help quit))
+
+(defun describe-pet (pet)
+  `(,(car pet) ,(cadr pet)))
+
+(defun describe-pets (player pets)
+  (apply #'append (mapcar #'describe-pet (cdr (assoc player pets)))))
+
+(defun adopt ()
+  (princ "Name pet: ")
+  (let ((name (read-line)))
+    (pushnew name *player-owned-pets*)))
 
 (defun help ()
   (format T "~&Usage:
