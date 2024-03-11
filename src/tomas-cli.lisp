@@ -7,7 +7,7 @@
     (beatrice (a dinosaur))
     (cindy (a hamster))))
 
-(defparameter *player-owned-pets* '((test pet (a testing pet for testing))))
+(defparameter *player-owned-pets* '())
 
 (defparameter *allowed-commands* '(adopt help quit))
 
